@@ -1,27 +1,18 @@
 const teapots = require("../controllers/teapotsController.js");
 const db = require("../db/dbConfig.js");
 
-//Index
-// const getAllReviews = async (teapot_id) => {
-//   try {
-//     const allReviews = await db.any(
-//       `SELECT * FROM reviews WHERE teapot_id=$1`,
-//       teapot_id
-//     );
-//     return allReviews;
-//   } catch (error) {
-//     return error;
-//   }
-// };
 //Grab Users And Reviews INDEX
 const grabUserAndReview = async (teapot_id) => {
   try {
-    const userAndReviews = await db.any("SELECT reviews.*, users.username FROM reviews LEFT JOIN users ON reviews.user_id = users.id WHERE teapot_id = $1", teapot_id)
-    return userAndReviews
+    const userAndReviews = await db.any(
+      "SELECT reviews.*, users.username FROM reviews LEFT JOIN users ON reviews.user_id = users.id WHERE teapot_id = $1",
+      teapot_id
+    );
+    return userAndReviews;
   } catch (error) {
-    return error
+    return error;
   }
-}
+};
 
 //Show
 const getOneReview = async (id) => {
@@ -35,7 +26,6 @@ const getOneReview = async (id) => {
 
 //Create
 const createReview = async (review) => {
-  // console.log("query", review)
   try {
     const newReview = await db.one(
       "INSERT INTO reviews (content, rating, teapot_id, user_id, created_at) VALUES($1, $2, $3, $4, $5) RETURNING *",
@@ -47,7 +37,6 @@ const createReview = async (review) => {
         review.created_at,
       ]
     );
-    // console.log(newReview)
     return newReview;
   } catch (error) {
     return error;
@@ -86,12 +75,10 @@ const updateReview = async (review) => {
   }
 };
 
-
 module.exports = {
-  // getAllReviews,
   getOneReview,
   createReview,
   deleteReview,
   updateReview,
-  grabUserAndReview
+  grabUserAndReview,
 };
