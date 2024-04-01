@@ -13,7 +13,7 @@ const app = express()
 // MIDDLEWARE
 app.use(
   cors({
-    origin: 'https://main--teawhips.netlify.app', // Allow only this origin to access
+    origin: 'http://localhost:3000', // Allow only this origin to access
     credentials: true, // Allow cookies and headers to be sent along with the request
   })
 )
