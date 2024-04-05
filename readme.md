@@ -1,5 +1,3 @@
 # Express Project
 
-Your readme for your project goes here.
-
-[Overview and Instructions](./instructions.md)
+[Frontend repo link](https://github.com/AnitaOwen/auth-react-login-project-frontend)
